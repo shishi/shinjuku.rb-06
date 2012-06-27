@@ -12,6 +12,11 @@ class Stack
   def size
     @elements.size
   end
+
+  def push(element)
+    @elements << element
+    nil
+  end
 end
 
 describe Stack do 
@@ -40,6 +45,15 @@ describe Stack do
         subject { stack }
         its(:size){ should == 2 }
       end 
+    end
+  end
+  describe '#push' do
+    specify do
+      expect{subject.push(0)}.to change(subject, :size).by(1) 
+    end
+
+    it "should return nil" do
+      subject.push(0).should be_nil
     end
   end
 end
