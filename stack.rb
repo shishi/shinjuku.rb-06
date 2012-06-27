@@ -17,6 +17,11 @@ class Stack
     @elements << element
     nil
   end
+
+  def pop
+    @elements.delete_at(-1)
+  end
+
 end
 
 describe Stack do 
@@ -54,6 +59,14 @@ describe Stack do
 
     it "should return nil" do
       subject.push(0).should be_nil
+    end
+  end
+  describe '#pop' do
+    let(:stack){ Stack.new(1, 2) }
+    subject { stack }
+    its(:pop){ should == 2 }
+    it do
+      expect{subject.pop}.to change(subject, :size).by(-1) 
     end
   end
 end
